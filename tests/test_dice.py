@@ -34,3 +34,9 @@ def test_dice_throw_invalid_faces(invalid_n):
     # Si ta fonction gère cela explicitement ou via random, le test passera.
     with pytest.raises(ValueError):
         dice_throw(invalid_n)
+
+# 3. Vérification qu'un mauvais type de paramètre lève une ValueError
+@pytest.mark.parametrize("invalid_type_input", [6.5, "6", "six", True, None])
+def test_dice_invalid_types(invalid_type_input):
+    with pytest.raises(ValueError):
+        dice_throw(invalid_type_input)
