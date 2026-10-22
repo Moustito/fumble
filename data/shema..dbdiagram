@@ -1,0 +1,284 @@
+{
+  "version": "2.0.0",
+  "darkMode": true,
+  "gridEnabling": false,
+  "currentViewName": null,
+  "defaultView": {
+    "detailLevel": "All",
+    "relationshipMode": "All",
+    "tablePositions": [
+      {
+        "name": "personnage",
+        "schemaName": "public",
+        "x": 512.8220528367757,
+        "y": -163.8969358088077
+      },
+      {
+        "name": "species",
+        "schemaName": "public",
+        "x": 253.34076004193662,
+        "y": -163.8969358088077
+      },
+      {
+        "name": "classes",
+        "schemaName": "public",
+        "x": 882.5732659254454,
+        "y": -37.0995877853897
+      },
+      {
+        "name": "careers",
+        "schemaName": "public",
+        "x": 512.8220528367757,
+        "y": 124.92741580826782
+      },
+      {
+        "name": "skills",
+        "schemaName": "public",
+        "x": -29.85887454840247,
+        "y": -13.796633971493634
+      },
+      {
+        "name": "talents",
+        "schemaName": "public",
+        "x": -27.533381517935595,
+        "y": 136.94843572383832
+      },
+      {
+        "name": "characteristics",
+        "schemaName": "public",
+        "x": 3.888005200814405,
+        "y": 287.0425193582365
+      }
+    ],
+    "tableGroupCollapseStates": [],
+    "stickyNoteLayouts": [],
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "class_id"
+        ],
+        "firstTableName": "careers",
+        "firstSchemaName": "public",
+        "firstRelation": "0..*",
+        "secondFieldNames": [
+          "id"
+        ],
+        "secondTableName": "classes",
+        "secondSchemaName": "public",
+        "secondRelation": "0..1",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "class_id"
+        ],
+        "firstTableName": "careers",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "carreers_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "0..*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "name"
+        ],
+        "firstTableName": "classes",
+        "firstSchemaName": "public",
+        "firstRelation": "*",
+        "secondFieldNames": [
+          "classes_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "species",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "species_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "attributes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "attributes_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "skills",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "skills_id"
+        ],
+        "secondTableName": "species",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "talents",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "talents_id"
+        ],
+        "secondTableName": "species",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "talents",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "talents_id"
+        ],
+        "secondTableName": "careers",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "skills",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "skills_id"
+        ],
+        "secondTableName": "careers",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "classes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "classes_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "careers",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "carreers_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "classes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "class_id"
+        ],
+        "secondTableName": "careers",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "classes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "classe_id"
+        ],
+        "secondTableName": "careers",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "classes",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "classes_id"
+        ],
+        "secondTableName": "careers",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      },
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "characteristics",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "characteristics_id"
+        ],
+        "secondTableName": "personnage",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      }
+    ]
+  },
+  "views": {}
+}

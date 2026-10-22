@@ -1,0 +1,56 @@
+Table personnage {
+  id int [PK]
+  name varchar [not null]
+  age int [not null]
+  species_id varchar [not null, ref: > species.id]
+  classes_id varchar [not null,  ref: > classes.id]
+  carreers_id varchar [not null,  ref: > careers.id]
+  characteristics_id varchar [not null,  ref: > characteristics.id]
+}
+Table species {
+  id int [PK]
+  name varchar [not null]
+  skills_id varchar [not null,  ref: > skills.id]
+  talents_id varchar [not null,  ref: > talents.id]
+}
+
+Table classes {
+  id int [PK]
+  name varchar [not null]
+}
+
+Table careers {
+  id int [PK]
+  name varchar [not null]
+  titre varchar [not null]
+  level int [not null]
+  skills_id varchar [not null, ref: > skills.id]
+  talents_id varchar [not null, ref: > talents.id]
+  classes_id int [not null, ref: > classes.id]
+}
+
+Table characteristics {
+  id int [PK]
+  CC int [not null]
+  CT int [not null]
+  F int [not null]
+  E int [not null]
+  I int [not null]
+  Dex int [not null]
+  Int int [not null]
+  FM int [not null]
+  Soc int [not null]
+  B int [not null]
+}
+
+Table skills {
+  id int [PK]
+  name varchar [not null]
+  description text [not null]
+}
+
+Table talents {
+  id int [PK]
+  name varchar [not null]
+  description text [not null]
+}
