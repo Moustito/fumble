@@ -1,56 +1,188 @@
-Table personnage {
-  id int [PK]
-  name varchar [not null]
-  age int [not null]
-  species_id varchar [not null, ref: > species.id]
-  classes_id varchar [not null,  ref: > classes.id]
-  carreers_id varchar [not null,  ref: > careers.id]
-  characteristics_id varchar [not null,  ref: > characteristics.id]
+// Enumérations pour typer certains champs
+Enum skill_kind {
+  base
+  advanced
 }
+
+Enum status_tier_enum {
+  Brass
+  Silver
+  Gold
+}
+
+Enum characteristic_enum {
+  WS // Weapon Skill
+  BS // Ballistic Skill
+  S  // Strength
+  T  // Toughness
+  I  // Initiative
+  Ag // Agility
+  Dex // Dexterity
+  Int // Intelligence
+  WP // Willpower
+  Fel // Fellowship
+}
+
+// Tables principales
 Table species {
-  id int [PK]
-  name varchar [not null]
-  skills_id varchar [not null,  ref: > skills.id]
-  talents_id varchar [not null,  ref: > talents.id]
+  id integer [primary key]
+  name varchar
+  base_move integer
+  base_fate integer
+  base_resilience integer
+  extra_points integer
+  wounds_formula varchar
+}
+
+Table species_characteristic_base {
+  species_id integer [ref: > species.id]
+  characteristic characteristic_enum
+  base_value integer
+
+  Indexes {
+    (species_id, characteristic) [pk]
+  }
 }
 
 Table classes {
-  id int [PK]
-  name varchar [not null]
+  id integer [primary key]
+  name varchar
+  starting_trappings text
 }
 
 Table careers {
-  id int [PK]
-  name varchar [not null]
-  titre varchar [not null]
-  level int [not null]
-  skills_id varchar [not null, ref: > skills.id]
-  talents_id varchar [not null, ref: > talents.id]
-  classes_id int [not null, ref: > classes.id]
+  id integer [primary key]
+  class_id integer [not null, ref: > classes.id]
+  name varchar
 }
 
-Table characteristics {
-  id int [PK]
-  CC int [not null]
-  CT int [not null]
-  F int [not null]
-  E int [not null]
-  I int [not null]
-  Dex int [not null]
-  Int int [not null]
-  FM int [not null]
-  Soc int [not null]
-  B int [not null]
+Table career_species_roll {
+  career_id integer [ref: > careers.id]
+  species_id integer [ref: > species.id]
+  roll_min integer
+  roll_max integer
+
+  Indexes {
+    (career_id, species_id) [pk]
+  }
+}
+
+Table career_levels {
+  id integer [primary key]
+  career_id integer [ref: > careers.id]
+  level integer
+  title varchar
+  status_tier status_tier_enum
+  standing integer
+  trappings text
 }
 
 Table skills {
-  id int [PK]
-  name varchar [not null]
-  description text [not null]
+  id integer [primary key]
+  name varchar
+  kind skill_kind
+  characteristic characteristic_enum
+  grouped boolean
 }
 
 Table talents {
-  id int [PK]
-  name varchar [not null]
-  description text [not null]
+  id integer [primary key]
+  name varchar
+  max_times varchar
+  description text
+}
+
+// Tables de liaison de carrière (Levels)
+Table career_level_skills {
+  career_level_id integer [ref: > career_levels.id]
+  skill_id integer [ref: > skills.id]
+
+  Indexes {
+    (career_level_id, skill_id) [pk]
+  }
+}
+
+Table career_level_talents {
+  career_level_id integer [ref: > career_levels.id]
+  talent_id integer [ref: > talents.id]
+
+  Indexes {
+    (career_level_id, talent_id) [pk]
+  }
+}
+
+Table career_level_characteristics {
+  career_level_id integer [ref: > career_levels.id]
+  characteristic characteristic_enum
+
+  Indexes {
+    (career_level_id, characteristic) [pk]
+  }
+}
+
+// Tables d'options d'espèces
+Table species_skills {
+  id integer [primary key]
+  species_id integer [ref: > species.id]
+  skill_id integer [ref: > skills.id]
+  choice_group integer [note: 'Pour regrouper les options "X ou Y"']
+}
+
+Table species_talents {
+  id integer [primary key]
+  species_id integer [ref: > species.id]
+  talent_id integer [ref: > talents.id]
+  choice_group integer [note: 'Pour regrouper les options "X ou Y"']
+}
+
+// Personnages et données associées
+Table characters {
+  id integer [primary key]
+  name varchar
+  species_id integer [ref: > species.id]
+  current_career_level_id integer [ref: > career_levels.id]
+  wounds integer
+  fate integer
+  fortune integer
+  resilience integer
+  resolve integer
+}
+
+Table character_characteristics {
+  character_id integer [ref: > characters.id]
+  characteristic characteristic_enum
+  initial_value integer
+  advances integer
+
+  Indexes {
+    (character_id, characteristic) [pk]
+  }
+}
+
+Table character_skills {
+  character_id integer [ref: > characters.id]
+  skill_id integer [ref: > skills.id]
+  advances integer
+
+  Indexes {
+    (character_id, skill_id) [pk]
+  }
+}
+
+Table character_talents {
+  character_id integer [ref: > characters.id]
+  talent_id integer [ref: > talents.id]
+  times_taken integer
+
+  Indexes {
+    (character_id, talent_id) [pk]
+  }
+}
+
+Table character_trappings {
+  id integer [primary key]
+  character_id integer [ref: > characters.id]
+  name varchar
+  quantity integer
+  description text
 }
